@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/FewBox.Service.DBJob/bin/Debug/netcoreapp3.1/FewBox.Service.DBJob.dll",
+            "program": "${workspaceFolder}/FewBox.Service.DBJob/bin/Debug/netcoreapp6.0/FewBox.Service.DBJob.dll",
             "args": [],
             "cwd": "${workspaceFolder}/FewBox.Service.DBJob",
             "stopAtEntry": false,

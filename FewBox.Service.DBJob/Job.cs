@@ -1,4 +1,6 @@
+using System;
 using System.Data;
+using System.Text;
 using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 
@@ -29,7 +31,17 @@ namespace FewBox.Service.DBJob
             }
             catch (MySqlException mySqlException)
             {
-                this.Logger.LogError(mySqlException.Message);
+                StringBuilder messageBuilder = new StringBuilder();
+                this.BuildExpressionString(messageBuilder, mySqlException);
+                this.Logger.LogError(messageBuilder.ToString());
+            }
+        }
+
+        private void BuildExpressionString(StringBuilder messageBuilder, Exception exception)
+        {
+            messageBuilder.AppendFormat("{0} - {1}\r\n", exception.Message, exception.StackTrace);
+            if(exception.InnerException!=null){
+                this.BuildExpressionString(messageBuilder, exception.InnerException);
             }
         }
     }
